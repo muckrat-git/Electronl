@@ -1,5 +1,7 @@
 # Electronl
 Electronl is a Cellular Automata game where you create machines from simple parts.
+## How To Play
+To play Electronl simply download the latest package and run the main.jar file.<br> Alternatively, if you really don't want to download anything you can play Electronl at https://replit.com/@scratchdragon10/Electronl. Keep in mind that the game runs pretty bad in replit.
 ## Issues
 Electronl is VERY early on in development so issues are likely to be comman. If you encounter an issue please post it in the issues tab of the projects github.
 ## Current Modules
