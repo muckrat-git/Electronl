@@ -21,7 +21,6 @@ public class PowerCell extends Module {
     }
     @Override
     public void Update(Module[] Modules) {
-        System.out.println("!");
         super.Update(Modules);
         if(state == 1) {
             if (replaceState("ElectronL", 0, 1,Modules)) {
