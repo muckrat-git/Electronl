@@ -5,7 +5,7 @@ import Electronl.*;
 import Electronl.Cells.*;
 
 public class CellManager {
-    static int tickSpeed = 10;
+    static int tickSpeed = 5;
     public Module[] modules = {
             new Air(),
             new Electronl(0),//Neutral
