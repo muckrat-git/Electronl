@@ -26,6 +26,7 @@ public class CellManager {
             CellBuffer[i].state = Cells[i].state;
             CellBuffer[i].x = Cells[i].x;
             CellBuffer[i].y = Cells[i].y;
+            CellBuffer[i].index = Cells[i].index;
             i++;
         }
         //Update every cell/module
@@ -53,6 +54,7 @@ public class CellManager {
         Cells[Cells.length - 1] = cell;
         Cells[Cells.length - 1].x = x;
         Cells[Cells.length - 1].y = y;
+        Cells[Cells.length - 1].index = Cells.length - 1;
         return Cells;
     }
 }

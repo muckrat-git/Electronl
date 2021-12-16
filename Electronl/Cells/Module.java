@@ -12,6 +12,7 @@ import Electronl.*;
 
 public class Module {
     public String name = "Module";
+    public int index = 0;
     public int state = 0;
     public Image sprite;
     public int x = 0;
@@ -37,7 +38,7 @@ public class Module {
         x += movex;
         y += movey;
         for(Module item : CellManager.Cells) {
-            if(x == item.x && y == item.y && item.name != "Air") {
+            if(x == item.x && y == item.y && item.name != "Air" && item.index != index) {
                 item.movex = movex;
                 item.movey = movey;
                 item.move();

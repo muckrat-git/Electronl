@@ -39,7 +39,6 @@ public class Mover extends Module {
             case 1:
                 //Active
                 move();
-                System.out.println("!");
                 state = 0;
                 break;
         }
