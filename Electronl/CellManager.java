@@ -11,7 +11,9 @@ public class CellManager {
             new Electronl(0),//Neutral
             new Electronl(1),//Powered
             new Electronl(2),//Drained
-            new Mover()
+            new Mover(),
+            new PowerCell(0),
+            new PowerCell(1)
     };
     public static int mod_i = 0;
     public static Module[] Cells = new Module[0];
