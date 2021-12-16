@@ -77,7 +77,8 @@ public class Module {
             if(item.name.equals(cell)) {
                 if(item.getState() == s) {
                     if (Math.abs(x - item.x) <= 1 && Math.abs(y - item.y) <= 1) {
-                        Modules[i].state = s2;
+                        Modules[i].bufferstate = s2;
+                        Modules[i].bufferenabled = true;
                         return true;
                     }
                 }
