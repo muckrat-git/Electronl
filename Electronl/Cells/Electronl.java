@@ -18,7 +18,6 @@ public class Electronl extends Module {
 
     @Override
     public void Update(Module[] Modules) {
-        super.Update(Modules);
         switch(state) {
             case 0:
                 if (replaceState("ElectronL", 1, 2,Modules)) {
@@ -32,6 +31,7 @@ public class Electronl extends Module {
                 state = 0;
                 break;
         }
+        super.Update(Modules);
     }
     @Override
     public Image getSprite() {
