@@ -14,7 +14,7 @@ public class CellManager {
             new Mover(),
             new PowerCell(0),//Drained
             new PowerCell(1)//Charged
-    };//
+    };
     public static int mod_i = 0;
     public static Module[] Cells = new Module[0];
 
