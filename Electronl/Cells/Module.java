@@ -16,6 +16,8 @@ public class Module {
     public Image sprite;
     public int x = 0;
     public int y = 0;
+    public int movex = 0;
+    public int movey = 0;
     boolean bufferenabled = false;
     int bufferstate = 0;
 
@@ -31,6 +33,20 @@ public class Module {
     public void LateUpdate() {}
 
     //Util
+    void move() {
+        x += movex;
+        y += movey;
+        for(Module item : CellManager.Cells) {
+            if(x == item.x && y == item.y && item.name != "Air") {
+                item.movex = movex;
+                item.movey = movey;
+                item.move();
+                break;
+            }
+        }
+        movex = 0;
+        movey = 0;
+    }
     boolean nextTo(String cell,Module[] Modules) {
         for(Module item : Modules) {
             if(item.name.equals(cell)) {

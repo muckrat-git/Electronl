@@ -9,14 +9,13 @@ import javax.imageio.*;
 
 import javax.swing.*;
 import Electronl.*;
+import Electronl.Cells.Module;
 
 public class Mover extends Module {
     public Mover() {
         name = "Mover";
         state = 0;
     }
-    int movex = 0;
-    int movey = 0;
     @Override
     public void Update(Module[] Modules) {
         super.Update(Modules);
@@ -39,8 +38,8 @@ public class Mover extends Module {
                 break;
             case 1:
                 //Active
-                x += movex;
-                y += movey;
+                move();
+                System.out.println("!");
                 state = 0;
                 break;
         }
