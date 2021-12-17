@@ -11,6 +11,7 @@ import javax.swing.*;
 import Electronl.*;
 
 public class Module {
+    boolean in = false;
     public String name = "Module";
     public int index = 0;
     public int state = 0;
