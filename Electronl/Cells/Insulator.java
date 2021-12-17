@@ -16,6 +16,6 @@ public class Insulator extends Module {
     }
     @Override
     public Image getSprite() {
-        return (Frame.toolkit.getImage(Frame.imagesdir + "Insulator.png"));
+        return (Frame.toolkit.getImage(Frame.imagesdir + "insulator.png"));
     }
 }
