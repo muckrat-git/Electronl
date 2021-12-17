@@ -14,10 +14,31 @@ public class CellManager {
             new PowerCell(0),//Drained
             new PowerCell(1),//Charged
             new Grabber(),
-            new Insulator()
+            new Insulator()//
     };
     public static int mod_i = 0;
     public static Module[] Cells = new Module[0];
+
+    static void OrderCells() {
+        int i = 0;
+        for(Module item : Cells) {
+            if(item.name.equals("ElectronL")) {
+                item.index = i;
+                i++;
+            }
+        }
+        for(Module item : Cells) {
+            if(!item.name.equals("ElectronL")) {
+                item.index = i;
+                i++;
+            }
+        }
+        Module[] CellBuffer = new Module[Cells.length];
+        for(Module item : Cells) {
+            CellBuffer[item.index] = item;
+        }
+        Cells = CellBuffer;
+    }
 
     public static void Update() {
         //Buffer to avoid instant update
@@ -46,6 +67,7 @@ public class CellManager {
                 Cells[i] = cell;
                 Cells[i].x = x;
                 Cells[i].y = y;
+                OrderCells();
                 return Cells;
             }
             i++;
@@ -58,6 +80,7 @@ public class CellManager {
         Cells[Cells.length - 1].x = x;
         Cells[Cells.length - 1].y = y;
         Cells[Cells.length - 1].index = Cells.length - 1;
+        OrderCells();
         return Cells;
     }
 }
