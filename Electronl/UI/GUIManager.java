@@ -20,7 +20,7 @@ class ModuleIndicator extends UIElement {
     public Image image = Frame.toolkit.getImage(Frame.imagesdir + "cursor.png");
     public ModuleIndicator() {
         x = 10;
-        y = 36;
+        y = 0;
         width = 32;
         height = 32;
     }
@@ -30,13 +30,28 @@ class ModuleIndicator extends UIElement {
         return cellManager.modules[cellManager.mod_i].getSprite();
     }
 }
+class ModuleLabel extends UIElement {
+    public int layer = 0;
+    public Image image = Frame.toolkit.getImage(Frame.imagesdir + "cursor.png");
+    public ModuleLabel() {
+        x = 50;
+        y = 0;
+        width = 100;
+        height = 18;
+    }
+    @Override
+    public Image getImage() {
+        CellManager cellManager = new CellManager();
+        return Frame.toolkit.getImage(Frame.imagesdir + "labels/" + cellManager.modules[cellManager.mod_i].name + ".png");
+    }
+}
 
 class Toolbar extends UIElement {
     public int layer = 0;
     public Image image = Frame.toolkit.getImage(Frame.imagesdir + "toolbar.png");
     public Toolbar() {
         x = 10;
-        y = 36;
+        y = 20;
         width = (int)(42 * 2.8);
         height = (int)(126 * 2.8);
     }
@@ -56,6 +71,7 @@ public class GUIManager {
         UI = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_INT_ARGB);
         //Add Elements:
         addUI(new ModuleIndicator());
+        addUI(new ModuleLabel());
         //Initial update to avoid null elements
         Update(frame);
     }
@@ -68,7 +84,7 @@ public class GUIManager {
             for (UIElement item : Elements) {
                 if (item.layer == i) {
                     item.Update();
-                    g2d.drawImage(item.getImage(), item.x, item.y, (int)(item.width * (frame.getHeight() / 400)), (int)(item.height * (frame.getHeight() / 400)), frame);
+                    g2d.drawImage(item.getImage(), (int)(item.x * (frame.getHeight() / 400)), (int)(item.y * (frame.getHeight() / 400)) + 36, (int)(item.width * (frame.getHeight() / 400)), (int)(item.height * (frame.getHeight() / 400)), frame);
                 }
             }
         }
