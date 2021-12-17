@@ -30,7 +30,7 @@ public class Frame extends JFrame {
             return (BufferedImage) img;
         }
 
-        // Create a buffered image with transparency
+        // Create a buffered image that is transparent
         BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
 
         // Draw the image on to the buffered image

@@ -14,7 +14,9 @@ public class CellManager {
             new PowerCell(0),//Drained
             new PowerCell(1),//Charged
             new Grabber(),
-            new Insulator()//
+            new Insulator(),
+            new Diode(false),
+            new Diode(true)
     };
     public static int mod_i = 0;
     public static Module[] Cells = new Module[0];
