@@ -23,6 +23,9 @@ public class Electronl extends Module {
                 if (replaceState("ElectronL", 1, 2,Modules)) {
                     state = 1;
                 }
+                else if (replaceState("Grabber", 2, 0,Modules)) {
+                    state = 1;
+                }
                 break;
             case 1:
                 state = 2;

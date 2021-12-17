@@ -22,10 +22,13 @@ public class Module {
     boolean bufferenabled = false;
     int bufferstate = 0;
 
+    boolean moved = false;
+
     //For Override
     public Module() {}
     public Image getSprite() {return null;}
     public void Update(Module[] Modules) {
+        moved = false;
         //Clear BufferState
         if(bufferenabled) {
             state = bufferstate;
@@ -35,16 +38,32 @@ public class Module {
 
     //Util
     void move() {
+        if(moved) {
+            boolean obstructed = false;
+            for(Module item : CellManager.Cells) {
+                if(x == item.x && y == item.y) {
+                    obstructed = true;
+                    break;
+                }
+            }
+            if(!obstructed) {
+                return;
+            }
+        }
+        else {
+            moved = true;
+        }
         x += movex;
         y += movey;
         for(Module item : CellManager.Cells) {
-            if(x == item.x && y == item.y && item.name != "Air" && item.index != index) {
+            if(x == item.x && y == item.y && item.name != "Air" && item.index != index && item.movex == 0 && item.movey == 0) {
                 item.movex = movex;
                 item.movey = movey;
                 item.move();
                 break;
             }
         }
+        
         movex = 0;
         movey = 0;
     }
@@ -71,6 +90,23 @@ public class Module {
         return false;
     }
     boolean replaceState(String cell,int s,int s2,Module[] Modules) {
+        //System.out.println(cellManager.modules.length);
+        int i = 0;
+        for(Module item : Modules) {
+            if(item.name.equals(cell)) {
+                if(item.getState() == s) {
+                    if (Math.abs(x - item.x) <= 1 && Math.abs(y - item.y) <= 1) {
+                        Modules[i].state = s2;
+                        //Modules[i].bufferenabled = true;
+                        return true;
+                    }
+                }
+            }
+            i++;
+        }
+        return false;
+    }
+    boolean replaceStateBuffered(String cell,int s,int s2,Module[] Modules) {
         //System.out.println(cellManager.modules.length);
         int i = 0;
         for(Module item : Modules) {
