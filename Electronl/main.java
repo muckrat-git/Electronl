@@ -49,6 +49,7 @@ class KeyInput extends KeyAdapter {
 }
 
 public class main {
+    static Frame globalframe;
     public static boolean update = false;
     static int sizeMultiplier = 1;
     public static void handleInput(int key) {
@@ -90,6 +91,10 @@ public class main {
                 System.out.println(key);
                 break;
         }
+        int x = (int)Math.floor(((Camera.x + (2 * globalframe.getSizeMultiplier())) / (4 * globalframe.getSizeMultiplier())));
+        int y = (int)Math.floor(((Camera.y + (2 * globalframe.getSizeMultiplier())) / (4 * globalframe.getSizeMultiplier())));
+        Camera.x = (x * (4 * globalframe.getSizeMultiplier()));
+        Camera.y = (y * (4 * globalframe.getSizeMultiplier()));
         update = true;
     }
     public static void delay(int time){
@@ -102,6 +107,7 @@ public class main {
     static int ticks = 0;
     public static void main(String[] args) {
         Frame frame = new Frame();
+        globalframe = frame;
         CellManager.createCell(0,0,new Electronl(0));
         CellManager.createCell(1,0,new Electronl(0));
         while(true) {
