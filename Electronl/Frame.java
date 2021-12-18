@@ -10,7 +10,8 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
 
-import Electronl.Shader;//
+import Electronl.Shader;
+import Electronl.Cells.Module;
 import Electronl.Cells.*;
 import Electronl.UI.*;
 
@@ -129,8 +130,8 @@ public class Frame extends JFrame {
                 cell.render(g2d, this);
             }
         }
-        int x = (int)Math.floor(((Camera.mouseX + (2 * getSizeMultiplier())) / (4 * getSizeMultiplier())));
-        int y = (int)Math.floor(((Camera.mouseY + (2 * getSizeMultiplier())) / (4 * getSizeMultiplier())));
+        int x = (int)((Camera.mouseX / (4 * getSizeMultiplier())));
+        int y = (int)((Camera.mouseY / (4 * getSizeMultiplier()))) + 1;
         g2d.drawImage((toolkit.getImage(imagesdir + "cursor.png")), (x * (4 * getSizeMultiplier())), (y * (4 * getSizeMultiplier())),4 * getSizeMultiplier(),4  * getSizeMultiplier(), this);
         GUIManager.render(g2d,this);
 

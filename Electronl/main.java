@@ -152,10 +152,12 @@ public class main {
         CellManager.createCell(1,0,new Electronl(0));
         while(true) {
             GUIManager.Update(frame);
+            Point point = MouseInfo.getPointerInfo().getLocation();
+            SwingUtilities.convertPointFromScreen(point, globalframe.getComponent(0));
             System.out.print("");
-            if(Camera.mouseX != MouseInfo.getPointerInfo().getLocation().getX() || Camera.mouseY != MouseInfo.getPointerInfo().getLocation().getY()) {
-                Camera.mouseX = MouseInfo.getPointerInfo().getLocation().getX();
-                Camera.mouseY = MouseInfo.getPointerInfo().getLocation().getY();
+            if(Camera.mouseX != point.getX() || Camera.mouseY != point.getY()) {
+                Camera.mouseX = point.getX();
+                Camera.mouseY = point.getY();
                 frame.repaint();
                 update = false;
             }
