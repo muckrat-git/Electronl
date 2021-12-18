@@ -36,6 +36,7 @@ public class Diode extends Module {
                                 if (Math.abs(x - item.x) <= 1 && Math.abs(y - item.y) <= 1) {
                                     CellManager.Cells[i].bufferstate = 1;
                                     CellManager.Cells[i].bufferenabled = true;
+                                    break;
                                 }
                             }
                         }
