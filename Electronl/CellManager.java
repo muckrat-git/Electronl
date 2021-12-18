@@ -17,7 +17,8 @@ public class CellManager {
             new Grabber(),
             new Insulator(),
             new Diode(false),
-            new Diode(true)
+            new Diode(true),
+            new LEDPanel()
     };
     public static int mod_i = 0;
     public static Module[] Cells = new Module[0];

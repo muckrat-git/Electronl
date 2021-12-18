@@ -17,10 +17,12 @@ import java.awt.event.*;
 import java.awt.MouseInfo;
 import java.awt.geom.Rectangle2D;
 
+import Electronl.Shader;//
 import Electronl.Cells.*;
 import Electronl.UI.*;
 
 public class Frame extends JFrame {
+    public static Shader shader = new Shader();
     public static String imagesdir = "Electronl/images/";
     public static Toolkit toolkit = Toolkit.getDefaultToolkit();
     public static BufferedImage toBufferedImage(Image img)
@@ -80,6 +82,8 @@ public class Frame extends JFrame {
     public Frame() {
         setTitle("Electronl");
         setSize(600, 400);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        setUndecorated(true);
         setVisible(true);
         addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e) {
@@ -100,6 +104,7 @@ public class Frame extends JFrame {
     }
     @Override
     public void paint(Graphics g) {
+        shader.runShader();
         BufferedImage buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = buffer.createGraphics();
         //super.paint(g2d);
