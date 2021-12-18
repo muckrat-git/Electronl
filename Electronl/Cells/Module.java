@@ -3,6 +3,7 @@ package Electronl.Cells;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.*;
+import java.awt.Color;
 
 import java.io.*;
 import javax.imageio.*;
@@ -11,7 +12,9 @@ import javax.swing.*;
 import Electronl.*;
 
 public class Module {
+    public boolean emitslight = false;
     boolean in = false;
+    public int brightness = 0;
     public String name = "Module";
     public int index = 0;
     public int state = 0;
@@ -131,5 +134,12 @@ public class Module {
     public void render(Graphics g, Frame frame) {
         sprite = getSprite();
         g.drawImage(sprite, frame.getGridCentre("x") + (int)Camera.x + (x * (4 * frame.getSizeMultiplier())), frame.getGridCentre("y") + (int)Camera.y + (y * (4 * frame.getSizeMultiplier())),4 * frame.getSizeMultiplier(),4  * frame.getSizeMultiplier(), frame);
+        if(brightness >= 0) {
+            g.setColor(new Color(255,255,255,brightness));
+        }
+        else {
+            g.setColor(new Color(0,0,0,0 - brightness));
+        }
+        g.fillRect(frame.getGridCentre("x") + (int)Camera.x + (x * (4 * frame.getSizeMultiplier())), frame.getGridCentre("y") + (int)Camera.y + (y * (4 * frame.getSizeMultiplier())),4 * frame.getSizeMultiplier(),4  * frame.getSizeMultiplier());
     }
 }

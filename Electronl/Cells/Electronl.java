@@ -20,20 +20,25 @@ public class Electronl extends Module {
     public void Update(Module[] Modules) {
         switch(state) {
             case 0:
+                emitslight = false;
                 if (replaceState("ElectronL", 1, 2,Modules)) {
                     state = 1;
+                    emitslight = true;
                 }
                 else if (replaceState("Grabber", 2, 0,Modules)) {
                     state = 1;
+                    emitslight = true;
                 }
                 else {
                     
                 }
                 break;
             case 1:
+                emitslight = false;
                 state = 2;
                 break;
             case 2:
+                emitslight = false;
                 state = 0;
                 break;
         }
