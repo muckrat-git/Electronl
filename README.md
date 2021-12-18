@@ -22,7 +22,7 @@ Behavior:
 When a power cell's charge reaches 0 its state will change to uncharged and when a power cell's charge reaches 32 it will become charged.<br>Charged power cells will output energy at a rate of 1 charge per 3 cycles. Uncharged power cells will receive charge at a max rate of 1 charge per cycle.
 #### Grabber
 States (3): Active, Inactive, Powered<br>
-Charge: 0 - 8;
+Charge: 0 - 8<br>
 Behavior:
 When an inactive grabber is powered it becomes active and will gain a charge of 8, the Grabber will remain active until it is powered again or loses all of its charges. An active Grabber will lose charges at a rate of 1 per cycle. When an active Grabber is powered it will become a powered Grabber for one cycle whereupon returning to an active grabber it will gain 1 charge. Powered Grabbers can transfer power to an ElectronL but no other modules.
 #### Diode
