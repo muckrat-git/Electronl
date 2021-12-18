@@ -25,8 +25,8 @@ class MouseInput implements MouseListener {
     }
 
     public void mousePressed(MouseEvent e) {
-        int x = (int) Math.floor((((Camera.mouseX - (frame.getGridCentre("x") + (int)Camera.x)) + (2 * frame.getSizeMultiplier())) / (4 * frame.getSizeMultiplier())));
-        int y = (int) Math.floor((((Camera.mouseY - (frame.getGridCentre("y") + (int)Camera.y)) + (2 * frame.getSizeMultiplier())) / (4 * frame.getSizeMultiplier()))) ;
+        int x = (int)(((Camera.mouseX - (frame.getGridCentre("x") + Camera.x)) / (4 * frame.getSizeMultiplier())));
+        int y = (int)(((Camera.mouseY - (frame.getGridCentre("y") + Camera.y)) / (4 * frame.getSizeMultiplier())));
         CellManager cellManager = new CellManager();
         CellManager.createCell(x, y, cellManager.modules[cellManager.mod_i]);
         main.update = true;

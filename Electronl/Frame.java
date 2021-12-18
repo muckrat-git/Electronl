@@ -130,9 +130,9 @@ public class Frame extends JFrame {
                 cell.render(g2d, this);
             }
         }
-        int x = (int)((Camera.mouseX / (4 * getSizeMultiplier())));
-        int y = (int)((Camera.mouseY / (4 * getSizeMultiplier()))) + 1;
-        g2d.drawImage((toolkit.getImage(imagesdir + "cursor.png")), (x * (4 * getSizeMultiplier())), (y * (4 * getSizeMultiplier())),4 * getSizeMultiplier(),4  * getSizeMultiplier(), this);
+        int x = (int)(((Camera.mouseX - (getGridCentre("x") + Camera.x)) / (4 * getSizeMultiplier())));
+        int y = (int)(((Camera.mouseY - (getGridCentre("y") + Camera.y)) / (4 * getSizeMultiplier())));
+        g2d.drawImage((toolkit.getImage(imagesdir + "cursor.png")), getGridCentre("x") + (int)Camera.x + (x * (4 * getSizeMultiplier())), getGridCentre("y") + (int)Camera.y + (y * (4 * getSizeMultiplier())),4 * getSizeMultiplier(),4  * getSizeMultiplier(), this);
         GUIManager.render(g2d,this);
 
         g.drawImage(buffer,0,0,this);
