@@ -78,9 +78,11 @@ public class Frame extends JFrame {
     public Frame() {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         device = ge.getDefaultScreenDevice();
+        ImageIcon icon = new ImageIcon(imagesdir + "icon.png");
 
         setTitle("Electronl");
         setSize(600, 400);
+        setIconImage(icon.getImage());
         setExtendedState(JFrame.EXIT_ON_CLOSE);
         fullscreen();
         setVisible(true);
