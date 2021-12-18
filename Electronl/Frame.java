@@ -1,12 +1,6 @@
 package Electronl;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.Point;
-import java.awt.Cursor;
+import java.awt.*;
 import java.awt.image.*;
 
 import java.io.*;
@@ -14,7 +8,6 @@ import javax.imageio.*;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.awt.MouseInfo;
 import java.awt.geom.Rectangle2D;
 
 import Electronl.Shader;//
@@ -22,6 +15,8 @@ import Electronl.Cells.*;
 import Electronl.UI.*;
 
 public class Frame extends JFrame {
+    public boolean fullscreen = true;
+    public GraphicsDevice device;
     public static Shader shader = new Shader();
     public static String imagesdir = "Electronl/images/";
     public static Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -78,19 +73,22 @@ public class Frame extends JFrame {
         }
         return sizeMultiplier;
     }
-
+    public KeyInput input = new KeyInput();
     public Frame() {
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        device = ge.getDefaultScreenDevice();
+
         setTitle("Electronl");
         setSize(600, 400);
-        setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        setUndecorated(true);
+        setExtendedState(JFrame.EXIT_ON_CLOSE);
+        fullscreen();
         setVisible(true);
+
         addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
             }
         });
-        KeyInput input = new KeyInput();
         MouseInput mouseInput = new MouseInput(this);
         addKeyListener(input);
         addMouseListener(mouseInput);
@@ -102,6 +100,22 @@ public class Frame extends JFrame {
         //Init ui manager
         GUIManager.init(this);
     }
+
+    public void fullscreen() {
+        fullscreen = true;
+        dispose();
+        setUndecorated(true);
+        device.setFullScreenWindow(this);
+    }
+
+    public void fullscreenOff() {
+        fullscreen = false;
+        device.setFullScreenWindow(null);
+        dispose();
+        setUndecorated(false);
+        setVisible(true);
+    }
+
     @Override
     public void paint(Graphics g) {
         shader.runShader();

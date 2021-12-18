@@ -42,9 +42,37 @@ class MouseInput implements MouseListener {
 }
 
 class KeyInput extends KeyAdapter {
+    int keytick = 0;
+    int[] keysdown = new int[3];
+    int keyindex = 0;
     @Override
     public void keyPressed(KeyEvent e) {
+        for(int key : keysdown) {
+            if(key == e.getKeyCode()) {
+                return;
+            }
+        }
         main.handleInput(e.getKeyCode());
+        if(e.getKeyCode() == 27 || e.getKeyCode() == 122) {
+            return;
+        }
+        keysdown[keyindex] = e.getKeyCode();
+        keyindex++;
+        if(keyindex >= 3) {
+            keyindex = 0;
+        }
+        keytick = 0;
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int i = 0;
+        for(int key : keysdown) {
+            if(key == e.getKeyCode()) {
+                keysdown[i] = 0;
+            }
+            i++;
+        }
     }
 }
 
@@ -55,6 +83,9 @@ public class main {
     public static void handleInput(int key) {
         CellManager cellManager = new CellManager();
         switch(key) {
+            case 27:
+                globalframe.fullscreenOff();
+                break;
             case 40:
                 Camera.zoom = Camera.zoom / 1.2;
                 break;
@@ -87,8 +118,17 @@ public class main {
                     CellManager.mod_i = cellManager.modules.length - 1;
                 }
                 break;
+            case 122:
+                if(globalframe.fullscreen) {
+                    globalframe.fullscreenOff();
+                    globalframe.fullscreen = false;
+                }
+                else {
+                    globalframe.fullscreen();
+                    globalframe.fullscreen = true;
+                }
+                break;
             default:
-                System.out.println(key);
                 break;
         }
         int x = (int)Math.floor(((Camera.x + (2 * globalframe.getSizeMultiplier())) / (4 * globalframe.getSizeMultiplier())));
@@ -130,6 +170,15 @@ public class main {
                 ticks = 0;
                 CellManager.Update();
                 frame.repaint();
+            }
+
+            frame.input.keytick++;
+            if(frame.input.keytick > 15) {
+                //Handle input
+                for (int key : frame.input.keysdown) {
+                    handleInput(key);
+                }
+                frame.input.keytick = 0;
             }
             delay(10);
         }
