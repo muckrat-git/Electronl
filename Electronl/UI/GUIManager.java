@@ -12,10 +12,37 @@ import javax.swing.*;
 
 import Electronl.*;
 import Electronl.CellManager;
-import Electronl.UI.*;
+import Electronl.UI.GUIElement;
 import Electronl.Frame;
 
-class ModuleIndicator extends UIElement {
+class PriorityButton extends GUIButton {
+    boolean enabled = false;
+    public int layer = 0;
+    public Image image = Frame.toolkit.getImage(Frame.imagesdir + "/UI/priority_icon.png");
+    public PriorityButton() {
+        x = 10;
+        y = 40;
+        width = 16;
+        height = 16;
+    }
+    @Override
+    public Image getImage() {
+        if(enabled) {
+            image = Frame.toolkit.getImage(Frame.imagesdir + "/UI/priority_icon_enabled.png");
+        }
+        else {
+            image = Frame.toolkit.getImage(Frame.imagesdir + "/UI/priority_icon.png");
+        }
+        return image;
+    }
+
+    @Override
+    public void onPressed() {
+        enabled = !enabled;
+    }
+}
+
+class ModuleIndicator extends GUIElement {
     public int layer = 0;
     public Image image = Frame.toolkit.getImage(Frame.imagesdir + "cursor.png");
     public ModuleIndicator() {
@@ -30,7 +57,7 @@ class ModuleIndicator extends UIElement {
         return cellManager.modules[cellManager.mod_i].getSprite();
     }
 }
-class ModuleLabel extends UIElement {
+class ModuleLabel extends GUIElement {
     public int layer = 0;
     public Image image = Frame.toolkit.getImage(Frame.imagesdir + "cursor.png");
     public ModuleLabel() {
@@ -46,7 +73,7 @@ class ModuleLabel extends UIElement {
     }
 }
 
-class Toolbar extends UIElement {
+class Toolbar extends GUIElement {
     public int layer = 0;
     public Image image = Frame.toolkit.getImage(Frame.imagesdir + "toolbar.png");
     public Toolbar() {
@@ -61,9 +88,9 @@ class Toolbar extends UIElement {
 
 public class GUIManager {
     static BufferedImage UI;
-    static UIElement[] Elements = new UIElement[0];
+    static GUIElement[] Elements = new GUIElement[0];
 
-    public static void addUI(UIElement element) {
+    public static void addUI(GUIElement element) {
         Elements = Arrays.copyOf(Elements, Elements.length + 1);
         Elements[Elements.length - 1] = element;
     }
@@ -72,6 +99,7 @@ public class GUIManager {
         //Add Elements:
         addUI(new ModuleIndicator());
         addUI(new ModuleLabel());
+        addUI(new PriorityButton());
         //Initial update to avoid null elements
         Update(frame);
     }
@@ -81,8 +109,9 @@ public class GUIManager {
         updating = true;
         Graphics2D g2d = buffer.createGraphics();
         for(int i = -1; i < 3; i++) {
-            for (UIElement item : Elements) {
+            for (GUIElement item : Elements) {
                 if (item.layer == i) {
+                    item.updateMethods();
                     item.Update();
                     g2d.drawImage(item.getImage(), (int)(item.x * (frame.getHeight() / 400)), (int)(item.y * (frame.getHeight() / 400)) + 36, (int)(item.width * (frame.getHeight() / 400)), (int)(item.height * (frame.getHeight() / 400)), frame);
                 }

@@ -13,7 +13,7 @@ import Electronl.*;
 
 public class Module {
     public boolean emitslight = false;
-    boolean in = false;
+    public boolean in = false;
     public int brightness = 0;
     public String name = "Module";
     public int index = 0;
@@ -41,6 +41,9 @@ public class Module {
     public void LateUpdate() {}
 
     //Util
+    boolean getIn() {
+        return in;
+    }
     void move() {
         if(moved) {
             boolean obstructed = false;

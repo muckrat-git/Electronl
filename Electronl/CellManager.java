@@ -16,9 +16,10 @@ public class CellManager {
             new PowerCell(1),//Charged
             new Grabber(),
             new Insulator(),
-            new Diode(false),
-            new Diode(true),
-            new LEDPanel()
+            new Diode(false),//Out
+            new Diode(true),//In
+            new Switch(),//Switch
+            new LEDPanel()//
     };
     public static int mod_i = 0;
     public static Module[] Cells = new Module[0];
@@ -55,6 +56,8 @@ public class CellManager {
             CellBuffer[i].x = Cells[i].x;
             CellBuffer[i].y = Cells[i].y;
             CellBuffer[i].index = Cells[i].index;
+            //bro this one line of code cost me 3 hours of debugging
+            CellBuffer[i].in = Cells[i].in;
             i++;
         }
         //Update every cell/module

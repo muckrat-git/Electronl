@@ -17,30 +17,6 @@ import Electronl.Frame;
 
 import java.util.concurrent.TimeUnit;
 
-class MouseInput implements MouseListener {
-    Frame frame;
-
-    public MouseInput(Frame jframe) {
-        frame = jframe;
-    }
-
-    public void mousePressed(MouseEvent e) {
-        int x = (int)(((Camera.mouseX - (frame.getGridCentre("x") + Camera.x)) / (4 * frame.getSizeMultiplier())));
-        int y = (int)(((Camera.mouseY - (frame.getGridCentre("y") + Camera.y)) / (4 * frame.getSizeMultiplier())));
-        CellManager cellManager = new CellManager();
-        CellManager.createCell(x, y, cellManager.modules[cellManager.mod_i]);
-        main.update = true;
-    }
-
-    public void mouseReleased(MouseEvent e) {}
-
-    public void mouseEntered(MouseEvent e) {}
-
-    public void mouseExited(MouseEvent e) {}
-
-    public void mouseClicked(MouseEvent e) {}
-}
-
 class KeyInput extends KeyAdapter {
     int keytick = 0;
     int[] keysdown = new int[3];
@@ -155,13 +131,17 @@ public class main {
             Point point = MouseInfo.getPointerInfo().getLocation();
             SwingUtilities.convertPointFromScreen(point, globalframe.getComponent(0));
             System.out.print("");
+
+            //Update mouse pos
             if(Camera.mouseX != point.getX() || Camera.mouseY != point.getY()) {
                 Camera.mouseX = point.getX();
                 Camera.mouseY = point.getY();
                 frame.repaint();
                 update = false;
             }
+
             sizeMultiplier = frame.getSizeMultiplier() / 4;
+
             if(update) {
                 update = false;
                 frame.repaint();
