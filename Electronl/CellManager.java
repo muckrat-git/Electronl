@@ -2,9 +2,9 @@ package Electronl;
 
 import Electronl.Cells.Module;
 import java.util.Arrays;
-import Electronl.*;
 import Electronl.Cells.*;
 
+//ElectronL by Scratchdragon
 public class CellManager {
     static int tickSpeed = 10;
     public Module[] modules = {

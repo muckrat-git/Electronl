@@ -3,8 +3,7 @@ package Electronl.UI;
 import Electronl.Camera;
 import Electronl.MouseInput;
 
-import java.awt.*;
-
+//ElectronL by Scratchdragon
 public class GUIButton extends GUIElement {
     private boolean pressed = false;
 

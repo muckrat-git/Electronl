@@ -1,22 +1,14 @@
 package Electronl;
 
 import java.awt.*;
-import java.awt.image.*;
-
-import java.io.*;
-import javax.imageio.*;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-import java.util.Arrays;
-
 import Electronl.Cells.*;
 import Electronl.UI.*;
-import Electronl.Frame;
 
-import java.util.concurrent.TimeUnit;
-
+//ElectronL by Scratchdragon
 class KeyInput extends KeyAdapter {
     int keytick = 0;
     int[] keysdown = new int[3];

@@ -1,20 +1,15 @@
 package Electronl.UI;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.*;
 
-import java.io.*;
-import javax.imageio.*;
 import java.util.Arrays;
-import javax.swing.*;
 
-import Electronl.*;
 import Electronl.CellManager;
-import Electronl.UI.GUIElement;
 import Electronl.Frame;
 
+//ElectronL by Scratchdragon
 class PriorityButton extends GUIButton {
     boolean enabled = false;
     public int layer = 0;
@@ -99,7 +94,7 @@ public class GUIManager {
         //Add Elements:
         addUI(new ModuleIndicator());
         addUI(new ModuleLabel());
-        addUI(new PriorityButton());
+        //addUI(new PriorityButton());
         //Initial update to avoid null elements
         Update(frame);
     }
