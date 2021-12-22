@@ -74,6 +74,7 @@ public class Frame extends JFrame {
         }
         return sizeMultiplier;
     }
+    public MouseInput mouseInput = new MouseInput(this);
     public KeyInput input = new KeyInput();
     public Frame() {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -92,7 +93,6 @@ public class Frame extends JFrame {
                 System.exit(0);
             }
         });
-        MouseInput mouseInput = new MouseInput(this);
         addKeyListener(input);
         addMouseListener(mouseInput);
 

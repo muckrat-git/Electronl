@@ -154,9 +154,17 @@ public class main {
                 frame.repaint();
             }
 
+            //Handle mouse input
+            if(frame.mouseInput.mouseDown) {
+                int x = (int) (((Camera.mouseX - (frame.getGridCentre("x") + Camera.x)) / (4 * frame.getSizeMultiplier())));
+                int y = (int) (((Camera.mouseY - (frame.getGridCentre("y") + Camera.y)) / (4 * frame.getSizeMultiplier())));
+                CellManager.createCell(x, y, new CellManager().modules[CellManager.mod_i]);
+                update = true;
+            }
+
+            //Handle key input
             frame.input.keytick++;
             if(frame.input.keytick > 15) {
-                //Handle input
                 for (int key : frame.input.keysdown) {
                     handleInput(key);
                 }

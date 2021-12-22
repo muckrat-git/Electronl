@@ -70,7 +70,10 @@ public class CellManager {
     public static Module[] createCell(int x, int y, Module cell) {
         int i = 0;
         for(Module item : Cells) {
-            if(item.x == x && item.y == y) {
+            if(cell == item) {
+                return Cells;
+            }
+            else if(item.x == x && item.y == y) {
                 Cells[i] = cell;
                 Cells[i].x = x;
                 Cells[i].y = y;
