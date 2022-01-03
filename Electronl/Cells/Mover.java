@@ -26,8 +26,8 @@ public class Mover extends Module {
                     if(item.name.equals("ElectronL")) {
                         if(item.getState() == 1) {
                             if (Math.sqrt(((x - item.x) * (x - item.x)) + ((y - item.y) * (y - item.y))) <= 1.5) {
-                                movex = x - item.x;
-                                movey = y - item.y;
+                                movex = 0 - (x - item.x);
+                                movey = 0 - (y - item.y);
                             }
                         }
                     }

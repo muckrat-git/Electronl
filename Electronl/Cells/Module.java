@@ -41,6 +41,25 @@ public class Module {
     public void LateUpdate() {}
 
     //Util
+    public int getPrivate(String var) {
+        switch(var) {
+            case "index":
+                return index;
+            default:
+                System.out.println("No var '" + var + "'");
+                return 0;
+        }
+    }
+    public void setPrivate(String var,int val) {
+        switch(var) {
+            case "index":
+                index = val;
+                break;
+            default:
+                System.out.println("No var '" + var + "'");
+                break;
+        }
+    }
     boolean getIn() {
         return in;
     }

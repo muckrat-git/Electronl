@@ -23,8 +23,8 @@ public class PowerCell extends Module {
     public void Update(Module[] Modules) {
         super.Update(Modules);
         if(state == 1) {
-            if (replaceStateBuffered("ElectronL", 0, 1,CellManager.Cells)) {
-                replaceState("ElectronL", 0, 1,Modules);
+            if(replaceState("ElectronL", 0, 1,Modules)) {
+                replaceState("ElectronL", 0, 1,CellManager.Cells);
                 charge--;
                 if(charge <= 0) {
                     charge = 0;
@@ -34,8 +34,8 @@ public class PowerCell extends Module {
             }
         }
         else if(state == 0) {
-            if (replaceStateBuffered("ElectronL", 1, 2,CellManager.Cells)) {
-                replaceState("ElectronL", 1, 2,Modules);
+            if(replaceState("ElectronL", 1, 2,Modules)) {
+                replaceState("ElectronL", 1, 2,CellManager.Cells);
                 charge++;
                 if(charge >= 32) {
                     charge = 32;

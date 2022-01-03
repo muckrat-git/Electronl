@@ -48,6 +48,14 @@ public class Diode extends Module {
                                 }
                             }
                         }
+                        else if(item.name.equals("Input")) {
+                            if(item.index != index && item.state != 0 && item.getPrivate("charged") == 0) {
+                                if (Math.abs(x - item.x) <= 1 && Math.abs(y - item.y) <= 1) {
+                                    CellManager.Cells[i].setPrivate("charged",1);
+                                    break;
+                                }
+                            }
+                        }
                         i++;
                     }
                 }

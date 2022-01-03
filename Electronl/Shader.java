@@ -7,6 +7,7 @@ public class Shader {
     public Shader() {}
 
     public void runShader() {
+        //3rd party shaders should be possible soon
         int[] lightindex = new int[0];
         for(Module item : CellManager.Cells) {
             if(item.emitslight) {

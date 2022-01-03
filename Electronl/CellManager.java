@@ -1,6 +1,5 @@
 package Electronl;
 
-import Electronl.Cells.Module;
 import java.util.Arrays;
 import Electronl.Cells.*;
 
@@ -8,18 +7,22 @@ import Electronl.Cells.*;
 public class CellManager {
     static int tickSpeed = 10;
     public Module[] modules = {
-            new Air(),
-            new Electronl(0),//Neutral
-            new Electronl(1),//Powered
-            new Mover(),
-            new PowerCell(0),//Drained
-            new PowerCell(1),//Charged
-            new Grabber(),
-            new Insulator(),
-            new Diode(false),//Out
-            new Diode(true),//In
-            new Switch(),//Switch
-            new LEDPanel()//
+        new Air(),
+        new Electronl(0),//Neutral
+        new Electronl(1),//Powered
+        new Mover(),
+        new PowerCell(0),//Drained
+        new PowerCell(1),//Charged
+        new Grabber(),
+        new Insulator(),
+        new Diode(false),//Out diode
+        new Diode(true),//In diode
+        new Switch(),//Switch
+        new LEDPanel(),
+        new InputGate(1),//Key input
+        new InputGate(2),//Mouse input
+        new IonPowerUnit(0),//Drained
+        new IonPowerUnit(1)//Charged
     };
     public static int mod_i = 0;
     public static Module[] Cells = new Module[0];

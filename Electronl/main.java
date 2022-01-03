@@ -45,6 +45,8 @@ class KeyInput extends KeyAdapter {
 }
 
 public class main {
+    static boolean paused = false;
+    public static boolean alive = true;
     static Frame globalframe;
     public static boolean update = false;
     static int sizeMultiplier = 1;
@@ -96,6 +98,9 @@ public class main {
                     globalframe.fullscreen = true;
                 }
                 break;
+            case 32:
+                paused = !paused;
+                break;
             default:
                 break;
         }
@@ -116,8 +121,10 @@ public class main {
     public static void main(String[] args) {
         Frame frame = new Frame();
         globalframe = frame;
-        CellManager.createCell(0,0,new Electronl(0));
-        CellManager.createCell(1,0,new Electronl(0));
+        CellManager.createCell(0,0,new Processor());
+        CellManager.createCell(0,-1,new Electronl(0));
+        CellManager.createCell(0,-2,new Electronl(0));
+        CellManager.createCell(0,-3,new IonPowerUnit(1));
         while(true) {
             GUIManager.Update(frame);
             Point point = MouseInfo.getPointerInfo().getLocation();
@@ -140,17 +147,34 @@ public class main {
             }
 
             ticks++;
-            if(ticks > (100 / CellManager.tickSpeed)) {
+            if(ticks > (100 / CellManager.tickSpeed) && !paused) {
                 ticks = 0;
                 CellManager.Update();
                 frame.repaint();
             }
 
             //Handle mouse input
-            if(frame.mouseInput.mouseDown) {
+            if(frame.mouseInput.mouseDown && alive) {
                 int x = (int) (((Camera.mouseX - (frame.getGridCentre("x") + Camera.x)) / (4 * frame.getSizeMultiplier())));
                 int y = (int) (((Camera.mouseY - (frame.getGridCentre("y") + Camera.y)) / (4 * frame.getSizeMultiplier())));
-                CellManager.createCell(x, y, new CellManager().modules[CellManager.mod_i]);
+                boolean inputcell = false;
+                for(Module cell : CellManager.Cells) {
+                    if(cell.x == x && cell.y == y) {
+                        if(cell.name.equals("Input") && !new CellManager().modules[CellManager.mod_i].name.equals("Air")) {
+                            if(cell.getPrivate("charged") == 1) {
+                                cell.state = 0;
+                                cell.setPrivate("charged",0);
+                            }
+                            inputcell = true;
+                        }
+                    }
+                }
+                if(!inputcell) {
+                    if( new CellManager().modules[CellManager.mod_i].name.equals("Input") ) {
+                        frame.mouseInput.mouseDown = false;
+                    }
+                    CellManager.createCell(x, y, new CellManager().modules[CellManager.mod_i]);
+                }
                 update = true;
             }
 
