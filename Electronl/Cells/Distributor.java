@@ -13,7 +13,7 @@ import Electronl.*;
 
 public class Distributor extends Module {
     public Distributor() {
-        state = 1;
+        state = 0;
         name = "Distributor";
     }
     int toindex = 0;

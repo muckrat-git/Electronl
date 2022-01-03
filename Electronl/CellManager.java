@@ -24,7 +24,9 @@ public class CellManager {
         new InputGate(2),//Mouse input
         new IonPowerUnit(0),//Drained
         new IonPowerUnit(1),//Charged
-        new Distributor()
+        new Distributor(),
+        new Electromagnet("x"),
+        new Electromagnet("y")
     };
     public static int mod_i = 0;
     public static Module[] Cells = new Module[0];
