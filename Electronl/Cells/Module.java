@@ -6,6 +6,7 @@ import java.awt.image.*;
 import java.awt.Color;
 
 import java.io.*;
+import java.util.Arrays;
 import javax.imageio.*;
 
 import javax.swing.*;
@@ -92,6 +93,32 @@ public class Module {
         
         movex = 0;
         movey = 0;
+    }
+    Module[] getAdjacent(String cell,Module[] Modules) {
+        Module[] returnarray = new Module[0];
+        for(Module item : Modules) {
+            if(item.name.equals(cell)) {
+                if( Math.sqrt( ((x - item.x) * (x - item.x)) + ((y - item.y) * (y - item.y)) ) <= 1.5) {
+                    returnarray = Arrays.copyOf(returnarray, returnarray.length + 1);
+                    returnarray[returnarray.length - 1] = item;
+                }
+            }
+        }
+        return returnarray;
+    }
+    Module[] getAdjacent(String cell,int s,Module[] Modules) {
+        Module[] returnarray = new Module[0];
+        for(Module item : Modules) {
+            if(item.name.equals(cell)) {
+                if(item.getState() == s) {
+                    if (Math.sqrt(((x - item.x) * (x - item.x)) + ((y - item.y) * (y - item.y))) <= 1.5) {
+                        returnarray = Arrays.copyOf(returnarray, returnarray.length + 1);
+                        returnarray[returnarray.length - 1] = item;
+                    }
+                }
+            }
+        }
+        return returnarray;
     }
     boolean nextTo(String cell,Module[] Modules) {
         for(Module item : Modules) {

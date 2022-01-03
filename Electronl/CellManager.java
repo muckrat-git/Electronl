@@ -2,6 +2,7 @@ package Electronl;
 
 import java.util.Arrays;
 import Electronl.Cells.*;
+import Electronl.Cells.Module;
 
 //ElectronL by Scratchdragon
 public class CellManager {
@@ -22,7 +23,8 @@ public class CellManager {
         new InputGate(1),//Key input
         new InputGate(2),//Mouse input
         new IonPowerUnit(0),//Drained
-        new IonPowerUnit(1)//Charged
+        new IonPowerUnit(1),//Charged
+        new Distributor()
     };
     public static int mod_i = 0;
     public static Module[] Cells = new Module[0];

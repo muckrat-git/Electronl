@@ -18,6 +18,7 @@ public class Diode extends Module {
     }
     @Override
     public void Update(Module[] Modules) {
+        super.Update(Modules);
         switch(state) {
             case 0:
                 if(in) {
@@ -56,6 +57,14 @@ public class Diode extends Module {
                                 }
                             }
                         }
+                        else if(item.name.equals("Distributor")) {
+                            if(item.index != index && item.state == 0) {
+                                if (Math.abs(x - item.x) <= 1 && Math.abs(y - item.y) <= 1) {
+                                    CellManager.Cells[i].state = 1;
+                                    break;
+                                }
+                            }
+                        }
                         i++;
                     }
                 }
@@ -66,7 +75,6 @@ public class Diode extends Module {
                 bufferenabled = true;
                 break;
         }
-        super.Update(Modules);
     }
     @Override
     public Image getSprite() {
