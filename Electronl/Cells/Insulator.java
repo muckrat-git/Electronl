@@ -10,12 +10,12 @@ import javax.imageio.*;
 import javax.swing.*;
 import Electronl.*;
 
-public class Distributor extends Module {
-    public Distributor() {
-        name = "Distributor";
+public class Insulator extends Module {
+    public Insulator() {
+        name = "Insulator";
     }
     @Override
     public Image getSprite() {
-        return (Frame.toolkit.getImage(Frame.imagesdir + "cursor.png"));
+        return (Frame.toolkit.getImage(Frame.imagesdir + "insulator.png"));
     }
 }

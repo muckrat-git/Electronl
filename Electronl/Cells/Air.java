@@ -10,9 +10,9 @@ import javax.imageio.*;
 import javax.swing.*;
 import Electronl.*;
 
-public class Distributor extends Module {
-    public Distributor() {
-        name = "Distributor";
+public class Air extends Module {
+    public Air() {
+        name = "Air";
     }
     @Override
     public Image getSprite() {
