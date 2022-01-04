@@ -26,7 +26,9 @@ public class CellManager {
         new IonPowerUnit(1),//Charged
         new Distributor(),
         new Electromagnet("x"),
-        new Electromagnet("y")
+        new Electromagnet("y"),
+        new Magnet(),
+        new OcularSensor()
     };
     public static int mod_i = 0;
     public static Module[] Cells = new Module[0];
@@ -65,12 +67,16 @@ public class CellManager {
             CellBuffer[i].index = Cells[i].index;
             //bro this one line of code cost me 3 hours of debugging
             CellBuffer[i].in = Cells[i].in;
+            CellBuffer[i].moved = false;
+            Cells[i].moved = false;
             i++;
         }
         //Update every cell/module
         for(Module item : Cells) {
             item.Update(CellBuffer);
-            item.LateUpdate();
+        }
+        for(Module item : Cells) {
+            item.LateUpdate(CellBuffer);
         }
     }
 

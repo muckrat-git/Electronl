@@ -65,6 +65,14 @@ public class Diode extends Module {
                                 }
                             }
                         }
+                        else if(item.name.equals("OcularSensor")) {
+                            if(item.index != index && item.state == 0) {
+                                if (Math.abs(x - item.x) <= 1 && Math.abs(y - item.y) <= 1) {
+                                    CellManager.Cells[i].state = 1;
+                                    break;
+                                }
+                            }
+                        }
                         i++;
                     }
                 }

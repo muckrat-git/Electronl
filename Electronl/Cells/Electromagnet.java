@@ -16,7 +16,7 @@ public class Electromagnet extends Module {
     @Override
     public void Update(Module[] Modules) {
         Module[] adj = getAdjacent("ElectronL",1,Modules);
-        Module[] tomove = getAdjacent("Grabber", Modules);
+        Module[] tomove = getAdjacent("Magnet", Modules);
         switch(direction) {
             case "x":
                 if(state == 1) {
@@ -26,6 +26,12 @@ public class Electromagnet extends Module {
                         if(cell.y != y && cell.x != x) {
                             CellManager.Cells[cell.index].movex = x - cell.x;
                             CellManager.Cells[cell.index].move();
+                        }
+                    }
+                    adj = getAdjacent("ElectronL",0,Modules);
+                    for(Module cell : adj) {
+                        if(cell.y == y && (cell.x == x - 1 || cell.x == x + 1)) {
+                            CellManager.Cells[cell.index].state = 1;
                         }
                     }
                     break;
@@ -58,6 +64,12 @@ public class Electromagnet extends Module {
                         if(cell.y != y && cell.x != x) {
                             CellManager.Cells[cell.index].movey = y - cell.y;
                             CellManager.Cells[cell.index].move();
+                        }
+                    }
+                    adj = getAdjacent("ElectronL",0,Modules);
+                    for(Module cell : adj) {
+                        if(cell.x == x && (cell.y == y - 1 || cell.y == y + 1)) {
+                            CellManager.Cells[cell.index].state = 1;
                         }
                     }
                     break;

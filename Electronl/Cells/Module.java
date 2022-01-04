@@ -27,19 +27,18 @@ public class Module {
     boolean bufferenabled = false;
     int bufferstate = 0;
 
-    boolean moved = false;
+    public boolean moved = false;
 
     //For Override
     public Module() {}
     public Image getSprite() {return null;}
     public void Update(Module[] Modules) {
-        moved = false;
         //Clear BufferState
         if(bufferenabled) {
             state = bufferstate;
             bufferenabled = false;
         }}
-    public void LateUpdate() {}
+    public void LateUpdate(Module[] Modules) {}
 
     //Util
     public int getPrivate(String var) {
@@ -97,7 +96,7 @@ public class Module {
     Module[] getAdjacent(String cell,Module[] Modules) {
         Module[] returnarray = new Module[0];
         for(Module item : Modules) {
-            if(item.name.equals(cell)) {
+            if(item.name.equals(cell) || cell.equals("_ALL")) {
                 if( Math.sqrt( ((x - item.x) * (x - item.x)) + ((y - item.y) * (y - item.y)) ) <= 1.5) {
                     returnarray = Arrays.copyOf(returnarray, returnarray.length + 1);
                     returnarray[returnarray.length - 1] = item;
@@ -109,7 +108,7 @@ public class Module {
     Module[] getAdjacent(String cell,int s,Module[] Modules) {
         Module[] returnarray = new Module[0];
         for(Module item : Modules) {
-            if(item.name.equals(cell)) {
+            if(item.name.equals(cell) || cell.equals("_ALL")) {
                 if(item.getState() == s) {
                     if (Math.sqrt(((x - item.x) * (x - item.x)) + ((y - item.y) * (y - item.y))) <= 1.5) {
                         returnarray = Arrays.copyOf(returnarray, returnarray.length + 1);
