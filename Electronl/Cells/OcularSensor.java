@@ -12,7 +12,6 @@ public class OcularSensor extends Module {
     }
 
     Module[] prev = new Module[0];
-
     @Override
     public void Update(Module[] Modules) {
         super.Update(Modules);
